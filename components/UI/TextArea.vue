@@ -4,6 +4,8 @@ const { textarea, input } = useTextareaAutosize();
 const props = defineProps({
   modelValue: String,
   placeholder: String,
+  isDisable: Boolean,
+  outlineNone:Boolean,
 });
 
 input.value = props.modelValue;
@@ -22,14 +24,21 @@ defineEmits(["update:modelValue"]);
 <template>
   <div>
     <textarea
+      :readonly="isDisable"
       ref="textarea"
       v-model="input"
+      :class="{ onlyText: outlineNone }"
       class="resize-none"
       :placeholder="placeholder"
       @keyup.shift.enter.exact="input += '\n'"
       @input="$emit('update:modelValue', input)"
     >
-    {{ input }}
+    {{ input  }}
     </textarea>
   </div>
 </template>
+<style scoped>
+.onlyText{
+  outline: none;
+}
+</style>
