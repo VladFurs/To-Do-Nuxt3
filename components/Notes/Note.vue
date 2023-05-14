@@ -2,14 +2,14 @@
   const { textarea, input } = useTextareaAutosize();
   const { note } = defineProps({
     note: {
-      type: Array,
+      type: Object,
       required: true,
     },
   });
 </script>
 <template>
   <li
-    class="flex justify-between lock rounded-2xl pl-4 w-full justify-center items-center min-h-10 mt-4 text-sm border-green-400 border-4"
+    class="flex justify-between lock rounded-2xl pl-4 w-full items-center min-h-10 mt-4 text-sm border-green-400 border-4"
     :class="{ disable: !note.isDisable }"
   >
     <div class="flex justify-center items-center">
@@ -59,7 +59,7 @@
           alt="Done"
           width="18"
           height="18"
-          class="mr-5 border w-8 h-8 p-1 border-4 border-green-400 rounded-full"
+          class="mr-5 w-8 h-8 p-1 border-4 border-green-400 rounded-full"
         />
       </button>
       <button
@@ -73,7 +73,7 @@
           alt="Done"
           width="18"
           height="18"
-          class="mr-5 border w-8 h-8 p-1 border-4 border-red-600 rounded-full"
+          class="mr-5 w-8 h-8 p-1 border-4 border-red-600 rounded-full"
         />
       </button>
     </div>

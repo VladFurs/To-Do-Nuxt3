@@ -3,6 +3,7 @@
   const inputValue = ref("");
   const searchValue = ref("");
   const notes = ref([]);
+  const typeOfSort = ref("defolt");
   const typeNoteValue = ref("HomeNote");
   const createNote = () => {
     if (!inputValue.value) return;
@@ -18,18 +19,6 @@
     inputValue.value = "";
   };
 
-  const test2 = (sortType) => {
-    if (sortType === "defolt") {
-      return serchNotes;
-    } else if (sortType === "Work") {
-      serchNotes = notes.value.filter((note) => {
-        note.typeNoteValue === "WorkNote";
-        return serchNotes;
-      });
-    } else if (sortType === "Home") {
-      console.log(newNotes);
-    }
-  };
   const namesButton = [
     {
       value: "HomeNote",
@@ -89,10 +78,19 @@
       return notes.value.filter((note) =>
         note.title.toLowerCase().includes(searchValue.value.toLowerCase())
       );
+    } else if (typeOfSort.value === "defolt") {
+      return notes.value;
+    } else if (typeOfSort.value === "Work") {
+      return notes.value.filter((note) => note.typeNoteValue === "WorkNote");
+    } else if (typeOfSort.value === "Home") {
+      return notes.value.filter((note) => note.typeNoteValue === "HomeNote");
+    } else if (typeOfSort.value === "Date") {
+      return notes.value.filter((note) => note.typeNoteValue === "HomeNote");
     } else {
       return notes.value;
     }
   });
+  const test2 = sortType => typeOfSort.value = sortType;
 </script>
 
 <template>
