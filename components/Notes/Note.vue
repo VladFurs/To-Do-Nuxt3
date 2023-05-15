@@ -1,11 +1,14 @@
 <script setup>
-  const { textarea, input } = useTextareaAutosize();
+import { useNotesStore } from '~/store'
+const notesStore = useNotesStore()
+console.log(notesStore(a));
   const { note } = defineProps({
     note: {
       type: Object,
       required: true,
     },
   });
+ const emits = defineEmits('redaction')
 </script>
 <template>
   <li

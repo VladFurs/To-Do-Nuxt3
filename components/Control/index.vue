@@ -1,4 +1,5 @@
 <script setup>
+
   import { ref, watch, onMounted, computed } from "vue";
   const inputValue = ref("");
   const searchValue = ref("");
@@ -33,15 +34,19 @@
   ];
   const redactionNote = (id, actions) => {
     const element = notes.value.findIndex((el) => el.id === id);
+
     if (actions === "done") {
       notes.value[element].iscompleted = !notes.value[element].iscompleted;
     } else if (actions === "chenge") {
+    
       notes.value[element].isDisable = !notes.value[element].isDisable;
+
     } else if (actions === "delete") {
       notes.value.splice(element, 1);
       return notes;
     }
   };
+
 
   watch(
     notes,
@@ -71,8 +76,7 @@
   };
   const deleteAllDoneNotes = () => {
     notes.value = notes.value.filter((note) => note.iscompleted === false);
-  };
-
+};
   const serchNotes = computed(() => {
     if (searchValue.value) {
       return notes.value.filter((note) =>
@@ -90,7 +94,8 @@
       return notes.value;
     }
   });
-  const test2 = sortType => typeOfSort.value = sortType;
+const sort = sortType => typeOfSort.value = sortType;
+
 </script>
 
 <template>
@@ -141,8 +146,8 @@
     </div>
     <Notes
       :notes="serchNotes"
-      @sorting="test2"
-      @redaction="redactionNote"
+      @sorting="sort"
+      @redaction="(id, actions) => redactionNote(id, actions)"
     />
   </div>
 </template>

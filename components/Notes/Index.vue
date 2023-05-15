@@ -17,7 +17,7 @@
       <select
         v-model="sortType"
         @change="$emit('sorting', sortType)"
-        v-if="notes.length"
+        v-if="props.notes.length"
         name="Сортировать по ..."
         class="block ml-auto  lock rounded-2xl pl-4 w-80 h-8 border-4 border-green-400"
       >
